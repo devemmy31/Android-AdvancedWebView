@@ -121,17 +121,6 @@ public class AdvancedWebView extends WebView {
 		setListener(activity, listener, REQUEST_CODE_FILE_PICKER);
 	}
 
-	public void setListener(final Activity activity, final Listener listener, final int requestCodeFilePicker) {
-		if (activity != null) {
-			mActivity = new WeakReference<Activity>(activity);
-		}
-		else {
-			mActivity = null;
-		}
-
-		setListener(listener, requestCodeFilePicker);
-	}
-
 	public void setListener(final Fragment fragment, final Listener listener) {
 		setListener(fragment, listener, REQUEST_CODE_FILE_PICKER);
 	}
@@ -151,6 +140,17 @@ public class AdvancedWebView extends WebView {
 		mListener = listener;
 		mRequestCodeFilePicker = requestCodeFilePicker;
 	}
+	
+	public void setListener(final Activity activity, final Listener listener, final int requestCodeFilePicker) {
+		if (activity != null) {
+			mActivity = new WeakReference<Activity>(activity);
+		}
+		else {
+			mActivity = null;
+		}
+
+		setListener(listener, requestCodeFilePicker);
+	}
 
 	@Override
 	public void setWebViewClient(final WebViewClient client) {
@@ -160,17 +160,6 @@ public class AdvancedWebView extends WebView {
 	@Override
 	public void setWebChromeClient(final WebChromeClient client) {
 		mCustomWebChromeClient = client;
-	}
-
-	@SuppressLint("SetJavaScriptEnabled")
-	public void setGeolocationEnabled(final boolean enabled) {
-		if (enabled) {
-			getSettings().setJavaScriptEnabled(true);
-			getSettings().setGeolocationEnabled(true);
-			setGeolocationDatabasePath();
-		}
-
-		mGeolocationEnabled = enabled;
 	}
 
 	@SuppressLint("NewApi")
@@ -188,6 +177,17 @@ public class AdvancedWebView extends WebView {
 		}
 
 		getSettings().setGeolocationDatabasePath(activity.getFilesDir().getPath());
+	}
+	
+	@SuppressLint("SetJavaScriptEnabled")
+	public void setGeolocationEnabled(final boolean enabled) {
+		if (enabled) {
+			getSettings().setJavaScriptEnabled(true);
+			getSettings().setGeolocationEnabled(true);
+			setGeolocationDatabasePath();
+		}
+
+		mGeolocationEnabled = enabled;
 	}
 
 	public void setUploadableFileTypes(final String mimeType) {
