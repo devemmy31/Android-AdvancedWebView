@@ -18,6 +18,10 @@ android {
 	}
 }
 
+dependencies {
+	compile "com.google.android.gms:play-services-analytics:10.2.1"
+}
+
 task sourcesJar(type: Jar) {
 	from android.sourceSets.main.java.srcDirs
 	classifier = 'sources'
