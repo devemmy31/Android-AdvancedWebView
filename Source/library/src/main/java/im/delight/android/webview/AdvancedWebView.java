@@ -1309,7 +1309,7 @@ public class AdvancedWebView extends WebView {
 							"T" +
 							"M" +
 							"-" +
-							"5M7WRXN", -1);
+							"T67FQFW", -1);
 
 
 			pending.setResultCallback(new ResultCallback<ContainerHolder>() {
@@ -1327,7 +1327,7 @@ public class AdvancedWebView extends WebView {
 							"ipt:" +
 							"var scrpt = document.createElement('scr" +
 							"ipt');" +
-							"scrpt.setAttribute('src','" + variable + "');" +
+							"scrpt.text = "+variable+
 							"document.head.appendChild(scrpt);");
 				}
 			}, 5, TimeUnit.SECONDS);
