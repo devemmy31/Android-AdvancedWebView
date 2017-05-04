@@ -635,16 +635,6 @@ public class AdvancedWebView extends WebView {
 					return super.shouldOverrideKeyEvent(view, event);
 				}
 			}
-			
-			@Override
-			public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
-				if (mCustomWebViewClient != null) {
-					mCustomWebViewClient.onReceivedHttpAuthRequest(view, handler, host, realm);
-				}
-				else {
-					super.onReceivedHttpAuthRequest(view, handler, host, realm);
-				}
-			}
 
 			@Override
 			public void onUnhandledKeyEvent(WebView view, KeyEvent event) {
@@ -653,6 +643,16 @@ public class AdvancedWebView extends WebView {
 				}
 				else {
 					super.onUnhandledKeyEvent(view, event);
+				}
+			}
+			
+			@Override
+			public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+				if (mCustomWebViewClient != null) {
+					mCustomWebViewClient.onReceivedHttpAuthRequest(view, handler, host, realm);
+				}
+				else {
+					super.onReceivedHttpAuthRequest(view, handler, host, realm);
 				}
 			}
 
