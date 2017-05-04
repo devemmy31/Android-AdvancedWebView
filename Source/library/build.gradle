@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-	compile "com.google.android.gms:play-services-analytics:10.2.1"
+	compile "com.google.android.gms:play-services-analytics:10.+"
 }
 
 task sourcesJar(type: Jar) {
