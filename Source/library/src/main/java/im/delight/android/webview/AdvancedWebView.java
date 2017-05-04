@@ -627,22 +627,22 @@ public class AdvancedWebView extends WebView {
 			}
 
 			@Override
-			public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
-				if (mCustomWebViewClient != null) {
-					mCustomWebViewClient.onReceivedHttpAuthRequest(view, handler, host, realm);
-				}
-				else {
-					super.onReceivedHttpAuthRequest(view, handler, host, realm);
-				}
-			}
-
-			@Override
 			public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
 				if (mCustomWebViewClient != null) {
 					return mCustomWebViewClient.shouldOverrideKeyEvent(view, event);
 				}
 				else {
 					return super.shouldOverrideKeyEvent(view, event);
+				}
+			}
+			
+			@Override
+			public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+				if (mCustomWebViewClient != null) {
+					mCustomWebViewClient.onReceivedHttpAuthRequest(view, handler, host, realm);
+				}
+				else {
+					super.onReceivedHttpAuthRequest(view, handler, host, realm);
 				}
 			}
 
